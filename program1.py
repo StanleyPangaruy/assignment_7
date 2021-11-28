@@ -21,15 +21,14 @@ def userInput():
         #indicates the position of the last character
         punctuation = sentence[-1] 
         #loops the code until the user entered the correct syntax for sentences.
-        if not capital.isupper(): 
+        if not capital.isupper(): #sentence should start with a capital letter
             print('Please start with a capital letter.')
             continue
-        elif punctuation not in ['.', '?', '!']:
+        elif punctuation not in ['.', '?', '!']:#sentence should end with the proper punctuation mark.
             print('Please end with a proper punctuation mark.')
             continue
         else:
             return sentence
-
 
 def count(sentence):
     word = (' ') #variable to recognize each space in the sentence
