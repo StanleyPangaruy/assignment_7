@@ -8,32 +8,42 @@
 # vowels: 6
 # consonants: 8
 
+#imports from string method to use punctuation
+#that contains all the set of punctuation
+from string import punctuation
+
+#asks a user to input a sentence
 def userInput():
     while True:
         sentence = input('Sentence: ')
+        #indicates the position of the first character
         capital = sentence[0]
-        punctuation = sentence[-1]
-        if not capital.isupper():
+        #indicates the position of the last character
+        punctuation = sentence[-1] 
+        #loops the code until the user entered the correct syntax for sentences.
+        if not capital.isupper(): 
             print('Please start with a capital letter.')
             continue
         elif punctuation not in ['.', '?', '!']:
-            print('Please end with a punctuation mark.')
+            print('Please end with a proper punctuation mark.')
             continue
         else:
             return sentence
 
-def Count(sentence):
-    word = (' ')
+
+def count(sentence):
+    word = (' ') #variable to recognize each space in the sentence
     vowels = ('aeiou')
-    wordCount = 1
+    #counts for the word, vowel and consonant 
+    wordCount = 1 
     vowelCount = 0
     consonantCount = 0
-    for count in sentence:
-        if count in word:
+    for char in sentence:
+        if char in word: 
             wordCount +=  1
-        elif count in vowels:
+        elif char in vowels:
             vowelCount +=  1
-        elif count not in ['.', '?', '!']:
+        elif char not in punctuation: #to except all the special character used
             consonantCount +=  1      
     return wordCount, vowelCount, consonantCount
 
@@ -44,8 +54,7 @@ def display(wordC,vowelC,consonantC):
 
 def main():
     sentence = userInput().lower()
-    Count(sentence)
-    wCount, vCount, cCount = Count(sentence)
+    wCount, vCount, cCount = count(sentence)
     display(wCount,vCount,cCount)
 
 main()
