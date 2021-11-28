@@ -8,10 +8,9 @@
 # vowels: 6
 # consonants: 8
 
-
 def userInput():
     while True:
-        sentence = input('Enter your sentence: ')
+        sentence = input('Sentence: ')
         capital = sentence[0]
         punctuation = sentence[-1]
         if not capital.isupper():
@@ -23,29 +22,20 @@ def userInput():
         else:
             return sentence
 
-def wordCount(sentence):
+def Count(sentence):
     word = (' ')
+    vowels = ('aeiou')
     wordCount = 1
+    vowelCount = 0
+    consonantCount = 0
     for count in sentence:
         if count in word:
             wordCount +=  1
-    return wordCount
-
-def vowelCount(sentence):
-    vowels = ('AaEeIiOoUu')
-    vowelCount = 0
-    for count in sentence:
-        if count in vowels:
+        elif count in vowels:
             vowelCount +=  1
-    return vowelCount
-
-def consonantCount(sentence):
-    consonants = ('BbCcDdFfGgHhJjKkLlMmNnPpQqRrSsTtVvWwXxYyZz')
-    consonantCount = 0
-    for count in sentence:
-        if count in consonants:
-            consonantCount +=  1
-    return consonantCount
+        elif count not in ['.', '?', '!']:
+            consonantCount +=  1      
+    return wordCount, vowelCount, consonantCount
 
 def display(wordC,vowelC,consonantC):
     print('Word count:', wordC)
@@ -53,13 +43,9 @@ def display(wordC,vowelC,consonantC):
     print('Consonant letter count:', consonantC)
 
 def main():
-    sentence = userInput()
-    wordCount(sentence)
-    vowelCount(sentence)
-    consonantCount(sentence)
-    wCount = wordCount(sentence)
-    vCount = vowelCount(sentence)
-    cCount = consonantCount(sentence)
+    sentence = userInput().lower()
+    Count(sentence)
+    wCount, vCount, cCount = Count(sentence)
     display(wCount,vCount,cCount)
 
 main()
