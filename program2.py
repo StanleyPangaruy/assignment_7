@@ -43,12 +43,12 @@ def passChar(passW):
     countNum = 0
     countSChar = 0
     #loops for every character in the string
-    for i in passW:
-        if i in string.ascii_uppercase: #counts for the capital letters
+    for char in passW:
+        if char in string.ascii_uppercase: #counts for the capital letters
             countCap += 1
-        if i in string.digits: #counts for the numbers
+        if char in string.digits: #counts for the numbers
             countNum += 1
-        if i in string.punctuation: #counts for the special characters
+        if char in string.punctuation: #counts for the special characters
             countSChar += 1
     #compares the initial values to looped values
     #if the looped values are equal to the initial values
@@ -63,3 +63,38 @@ def passChar(passW):
     #then it returns True
     else:
         return True
+
+#funtion for validating the password
+def passValid(passW):
+    #if either of the functions returns false
+    #the password is invalid
+    if passLength(passW) is False or passChar(passW) is False: 
+        print('Password is invalid. Try again!')
+        return False
+    else:
+        print('Password is valid.')
+        return True
+
+#function that asks the user to retry to input a password
+#loops the codeblock until in passValid function returns true
+def tryPass(passW):
+    while True:
+        passW = userPassword()
+        if passValid(passW) is False:
+            continue
+        else:
+            break
+
+def main():
+    #calls the function and its returned value
+    #will be contained in passWrd variable
+    passWrd = userPassword()
+    #calls the function and if it returns false
+    #the code block will run the function under it 
+    if passValid(passWrd) is False:
+        tryPass(passWrd)
+    else:
+        exit #terminates the process if the password is valid
+
+main()
+
